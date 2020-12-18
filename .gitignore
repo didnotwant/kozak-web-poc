@@ -26,4 +26,4 @@ debug
 
 # browser bundles    #
 ######################
-*bundle.js
+# *bundle.js

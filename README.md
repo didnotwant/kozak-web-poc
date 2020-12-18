@@ -1,3 +1,32 @@
+**NOTE**: This is a temporary fork of AWS IoT SDK for JavaScript.
+
+It’s because it had a ready-to-go dev environment with all necessary tools for
+preparing a quick PoC.
+
+**TODO**: Get rid of the fork, prepare own environment and use the SDK as a
+dependency.
+
+All the necessary code of the PoC is in `examples/browser/mqtt-explorer`.
+
+For now one needs a browser with CORS disabled. It’s because the response of TVM
+doesn’t provide a CORS header. See: https://alfilatov.com/posts/run-chrome-without-cors/
+
+For making changes in the current PoC code one needs to edit files inside of `examples/browser/mqtt-explorer`
+and compile them using:
+```
+npm run-script browserize examples/browser/mqtt-explorer/index.js
+```
+Note that first the browserize has to be installed globally:
+```
+npm install -g browserify
+```
+
+Live version of the PoC should be available here: https://ghcdn.rawgit.org/didnotwant/kozak-web-poc/master/examples/browser/mqtt-explorer/index.html
+
+Don’t forget to connect your VPN!
+
+<hr />
+
 # AWS IoT SDK for JavaScript
 The aws-iot-device-sdk.js package allows developers to write JavaScript
 applications which access the AWS IoT Platform via [MQTT or MQTT over the Secure WebSocket Protocol](http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html).  It can be used in Node.js environments as well as in browser applications.
