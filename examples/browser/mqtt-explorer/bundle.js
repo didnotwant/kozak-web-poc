@@ -13,27 +13,23 @@ const AWSConfiguration = require('./aws-configuration.js');
 
 const tvmUrl = 'https://ktwqxpj1h6.execute-api.eu-central-1.amazonaws.com/test/tvm';
 
-const clientId = 'client1';
+const tvmClientId = 'client1';
 
-const defaultMessageString = '{"client":"' + clientId + '","loan_request":{"amount":30000,"period_in_months":3}}';
+const defaultMessageString = '{"client":"' + tvmClientId + '","loan_request":{"amount":30000,"period_in_months":3}}';
 
 console.log('Loaded AWS SDK for JavaScript and AWS IoT SDK for Node.js');
 
-let currentlySubscribedTopic = 'clients/' + clientId + '/in';
+let currentlySubscribedTopic = '';
 let messageHistory = '';
 
 AWS.config.region = AWSConfiguration.region;
 
 const reqData = JSON.stringify({
-   client: clientId,
+   client: tvmClientId,
 });
 
 window.fetch(tvmUrl, {
    method: 'POST',
-  // NOTE: Currently it only works for browsers with disabled CORS.
-  //
-  // Until the response doesn’t provide a CORS header one can disable web
-  // security in the browser for development. See: https://alfilatov.com/posts/run-chrome-without-cors/
    mode: 'cors',
    body: reqData,
    credentials: 'omit',
@@ -48,6 +44,7 @@ window.fetch(tvmUrl, {
       endpoint,
       topic_in: topicIn,
       topic_out: topicOut,
+      client_id: clientId,
     } = resp;
 
      const {
